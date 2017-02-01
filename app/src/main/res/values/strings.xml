@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Compra Facil</string>
+    <string name="action_settings">Login</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Usuário</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_sign_in">Login</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">Este Campo é Obrigatório</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_cadastro2">Cadastrar Produtos/Seções</string>
+</resources>
