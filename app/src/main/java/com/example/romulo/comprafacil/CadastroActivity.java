@@ -116,10 +116,18 @@ public class CadastroActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+
+
+            if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
+                View rootView = inflater.inflate(R.layout.fragment_cadastro_secoes, container, false);
+                return rootView;
+            }else {
+                View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
+                //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+                //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                return rootView;
+            }
+
         }
     }
 
