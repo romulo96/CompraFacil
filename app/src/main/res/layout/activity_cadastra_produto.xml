@@ -18,7 +18,7 @@
         android:hint="Nome"
         android:ems="10"
         android:layout_marginTop="17dp"
-        android:id="@+id/editText"
+        android:id="@+id/editTextNomeProd"
         android:layout_below="@+id/textViewNomeProduto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -29,8 +29,8 @@
         android:inputType="textPersonName"
         android:hint="Código"
         android:ems="10"
-        android:id="@+id/editTextCadastraProduto"
-        android:layout_below="@+id/editText"
+        android:id="@+id/editTextCodigo"
+        android:layout_below="@+id/editTextNomeProd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp" />
@@ -43,20 +43,8 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="230dp"
         android:layout_marginStart="230dp"
-        android:layout_alignTop="@+id/editText2"
-        android:layout_alignBottom="@+id/editText2" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Seção"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_marginTop="61dp"
-        android:layout_below="@+id/editTextCadastraProduto"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/editTextSecao"
+        android:layout_alignBottom="@+id/editTextSecao" />
 
     <Button
         android:text="Cadastrar"
@@ -69,7 +57,19 @@
         style="@android:style/Widget.Button"
         android:background="@color/colorPrimaryDark"
         tools:ignore="HardcodedText,UnusedAttribute"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editTextSecao"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Seção"
+        android:ems="10"
+        android:id="@+id/editTextSecao"
+        android:layout_marginTop="61dp"
+        android:layout_below="@+id/editTextCodigo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

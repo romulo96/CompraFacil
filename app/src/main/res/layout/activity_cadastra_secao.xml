@@ -11,14 +11,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.romulo.comprafacil.CadastraSecaoActivity">
 
-    <Spinner
+    <Button
+        android:text="Cadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinnerEscoSecao"
-        android:layout_alignParentTop="true"
+        android:id="@+id/buttonCadastrarSecao"
+        android:layout_marginBottom="74dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -26,17 +27,20 @@
         android:inputType="textPersonName"
         android:text="Nome do produto:"
         android:ems="10"
-        android:layout_below="@+id/spinnerEscoSecao"
-        android:layout_marginTop="27dp"
-        android:id="@+id/editTextNomeSecao" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewNomeprodutoSecao"
-        android:layout_below="@+id/editTextNomeSecao"
+        android:id="@+id/editTextNomeSecao"
+        android:layout_marginTop="13dp"
+        android:layout_below="@+id/editTextCodigoSecao"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerEscoSecao"
+        android:layout_marginTop="98dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="match_parent"
@@ -44,41 +48,9 @@
         android:inputType="textPersonName"
         android:text="Código Seção:"
         android:ems="10"
-        android:layout_marginTop="28dp"
         android:id="@+id/editTextCodigoSecao"
-        android:layout_below="@+id/textViewNomeprodutoSecao"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/spinnerEscoSecao"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextCodigoSecao"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginTop="12dp"
-        android:id="@+id/textViewCodigoSecao" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Cadastrar por seção"
-        android:ems="10"
-        android:id="@+id/editText5"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Cadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewCodigoSecao"
-        android:layout_marginTop="45dp"
-        android:id="@+id/buttonCadastrarSecao"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 </RelativeLayout>

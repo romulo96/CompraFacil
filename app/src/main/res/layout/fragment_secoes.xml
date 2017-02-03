@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,4 +19,22 @@
         android:id="@+id/textView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="startactivity_cadastra_secao"
+        app:fabSize="mini"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:id="@+id/floatingCadSecao"
+        app:backgroundTint="@android:color/holo_blue_light"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="58dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginStart="18dp" />
 </RelativeLayout>

@@ -118,7 +118,7 @@ public class CadastroActivity extends AppCompatActivity {
 
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
-                View rootView = inflater.inflate(R.layout.fragment_cadastro_secoes, container, false);
+                View rootView = inflater.inflate(R.layout.fragment_secoes, container, false);
                 return rootView;
             }else {
                 View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
@@ -170,5 +170,11 @@ public class CadastroActivity extends AppCompatActivity {
     public void startactivity_cadastra_produto(View view){
         Intent activity_cadastra_produto = new Intent(this, CadastraProdutoActivity.class);
         startActivity(activity_cadastra_produto);
+    }
+
+    // CHAMAR TELA SEÇÃO
+    public void startactivity_cadastra_secao(View view){
+        Intent activity_cadastra_secao = new Intent(this, CadastraSecaoActivity.class);
+        startActivity(activity_cadastra_secao);
     }
 }
