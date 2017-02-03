@@ -11,17 +11,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.romulo.comprafacil.CadastraProdutoActivity">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Nome"
-        android:ems="10"
-        android:layout_marginTop="17dp"
-        android:id="@+id/editTextNomeProd"
-        android:layout_below="@+id/textViewNomeProduto"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
+
 
     <EditText
         android:layout_width="match_parent"
@@ -29,11 +20,26 @@
         android:inputType="textPersonName"
         android:hint="Código"
         android:ems="10"
-        android:id="@+id/editTextCodigo"
-        android:layout_below="@+id/editTextNomeProd"
+        android:layout_marginTop="15dp"
+        android:id="@+id/editTextCodProd"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Nome"
+        android:ems="10"
+        android:id="@+id/editTextNome"
+        android:layout_below="@+id/editTextCodProd"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp" />
+
+
+
 
     <Spinner
         android:layout_width="match_parent"
@@ -55,7 +61,7 @@
         android:elevation="0dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         style="@android:style/Widget.Button"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         tools:ignore="HardcodedText,UnusedAttribute"
         android:layout_below="@+id/editTextSecao"
         android:layout_centerHorizontal="true" />
@@ -68,8 +74,10 @@
         android:ems="10"
         android:id="@+id/editTextSecao"
         android:layout_marginTop="61dp"
-        android:layout_below="@+id/editTextCodigo"
+        android:layout_below="@+id/editTextNome"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+
 
 </RelativeLayout>

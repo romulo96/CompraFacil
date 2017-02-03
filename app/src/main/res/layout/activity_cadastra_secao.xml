@@ -12,39 +12,6 @@
     tools:context="com.example.romulo.comprafacil.CadastraSecaoActivity">
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editTextNomeSecao"
-        android:layout_marginTop="13dp"
-        android:layout_below="@+id/editTextCodigoSecao"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="Nome do produto:" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinnerEscoSecao"
-        android:layout_marginTop="98dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editTextCodigoSecao"
-        android:layout_marginTop="39dp"
-        android:layout_below="@+id/spinnerEscoSecao"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:hint="Código Seção:" />
-
     <Button
         android:text="Cadastrar"
         android:id="@+id/buttonCadastrarSecao"
@@ -53,9 +20,33 @@
         android:elevation="0dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
         style="@android:style/Widget.Button"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         tools:ignore="HardcodedText,UnusedAttribute"
-        android:layout_below="@+id/editTextNomeSecao"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp" />
+        android:layout_marginBottom="97dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextCodigoSecao"
+        android:hint="Código"
+        android:layout_above="@+id/editTextNomeSecao"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextNomeSecao"
+        android:hint="Nome"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 </RelativeLayout>
