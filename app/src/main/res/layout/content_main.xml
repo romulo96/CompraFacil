@@ -16,11 +16,22 @@
 
     <SearchView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/pesquisa"
+        android:layout_height="wrap_content"
         android:queryHint="Busque por produtos..."
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:background="@android:color/background_light"
         android:layout_alignParentStart="true"
         android:layout_marginBottom="410dp" />
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ListProdutos"
+        android:layout_marginTop="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
