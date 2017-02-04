@@ -77,23 +77,23 @@ ContentValues contentValues = new ContentValues();
         dados.put(LOCALIZACAO, produto.getLocalizacao_pro());
         return dados;
     }
-    public List<Produto> buscar(){
-        SQLiteDatabase db = getWritableDatabase();
-        String sql = "SELECT * FROM "+TABELA+";";
-        Cursor c = db.rawQuery(sql,null);
-
-        List<Produto> produtos = new ArrayList<Produto>();
-        while (c.moveToNext()){
-            Produto produto = new Produto();
-            produto.setCod_pro(c.getInt(   c.getColumnIndex(CODIGO)));
-            produto.setNome_pro(c.getString(c.getColumnIndex(NOME)));
-            produto.setLocalizacao_pro(c.getString(c.getColumnIndex(LOCALIZACAO)));
-            produtos.add(produto);
-
-        }
-        c.close();
-        return produtos;
-    }
+//    public List<Produto> buscar(){
+//        SQLiteDatabase db = getWritableDatabase();
+//        String sql = "SELECT * FROM "+TABELA+";";
+//        Cursor c = db.rawQuery(sql,null);
+//
+//        List<Produto> produtos = new ArrayList<Produto>();
+//        while (c.moveToNext()){
+//            Produto produto = new Produto();
+//            produto.setCod_pro(c.getInt(   c.getColumnIndex(CODIGO)));
+//            produto.setNome_pro(c.getString(c.getColumnIndex(NOME)));
+//            produto.setLocalizacao_pro(c.getString(c.getColumnIndex(LOCALIZACAO)));
+//            produtos.add(produto);
+//
+//        }
+//        c.close();
+//        return produtos;
+//    }
 
     public List<String> buscarProduto(){
         SQLiteDatabase db = getWritableDatabase();

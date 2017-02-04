@@ -169,24 +169,16 @@ public class CadastroActivity extends AppCompatActivity {
 
                // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
                 //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-                   ProdutoDAO PD = new ProdutoDAO(getActivity());
 
-        ListView list = (ListView) rootView.findViewById(R.id.ListProdutos);
-
-        ArrayAdapter<String> adapter;
-
-        List<String> listm = new ArrayList<>();
-
-         listm = PD.buscarProduto();
-       // listm.add("oi");
-
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listm);
-     //  adapter = ArrayAdapter.createFromResource(get)
-
-        list.setAdapter(adapter);
-
-
-
+                ProdutoDAO PD = new ProdutoDAO(getActivity());
+                ListView list = (ListView) rootView.findViewById(R.id.ListProdutos);
+                 ArrayAdapter<String> adapter;
+                List<String> listm = new ArrayList<>();
+                listm = PD.buscarProduto();
+                // listm.add("oi");
+                adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listm);
+             //  adapter = ArrayAdapter.createFromResource(get)
+                list.setAdapter(adapter);
                 return rootView;
             }
 
