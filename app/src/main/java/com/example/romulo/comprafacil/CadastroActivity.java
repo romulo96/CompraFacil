@@ -2,6 +2,7 @@ package com.example.romulo.comprafacil;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -15,6 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.romulo.comprafacil.DAO.ProdutoDAO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -31,12 +40,31 @@ public class CadastroActivity extends AppCompatActivity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
+    //
     private ViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
+
+
+      /*  ProdutoDAO PD = new ProdutoDAO(this);
+
+        ListView list = (ListView) findViewById(R.id.ListProdutos);
+
+        ArrayAdapter<String> adapter;
+
+        List<String> listm = new ArrayList<>();
+
+       // listm = PD.buscarProduto();
+        listm.add("oi");
+
+        adapter = new ArrayAdapter<String>(CadastroActivity.this, android.R.layout.simple_list_item_1, listm);
+
+        list.setAdapter(adapter);*/
+
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -59,6 +87,12 @@ public class CadastroActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+
+
+
+
+
 
 
 
@@ -109,21 +143,50 @@ public class CadastroActivity extends AppCompatActivity {
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
+
+
+
+
             return fragment;
+
+
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
                 View rootView = inflater.inflate(R.layout.fragment_secoes, container, false);
+           //     TextView tx = (TextView) rootView.findViewById(R.id.textView);
+            //   tx.setText("oi");
+
                 return rootView;
             }else {
                 View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
-                //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+              //  TextView tx = (TextView) rootView.findViewById(R.id.textView);
+              //  tx.setText("oi");
+
+               // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
                 //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+                   ProdutoDAO PD = new ProdutoDAO(getActivity());
+
+        ListView list = (ListView) rootView.findViewById(R.id.ListProdutos);
+
+        ArrayAdapter<String> adapter;
+
+        List<String> listm = new ArrayList<>();
+
+         listm = PD.buscarProduto();
+       // listm.add("oi");
+
+        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listm);
+     //  adapter = ArrayAdapter.createFromResource(get)
+
+        list.setAdapter(adapter);
+
+
+
                 return rootView;
             }
 
@@ -177,4 +240,7 @@ public class CadastroActivity extends AppCompatActivity {
         Intent activity_cadastra_secao = new Intent(this, CadastraSecaoActivity.class);
         startActivity(activity_cadastra_secao);
     }
+
+
+
 }
