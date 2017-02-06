@@ -36,5 +36,5 @@ public class Produto implements Serializable {
     }
 
     @Override
-    public String toString(){return "Codigo:"+getCod_pro()+"\nNome:"+getNome_pro()+"\n Secao:"+getLocalizacao_pro();}
+    public String toString(){return "Codigo:"+getCod_pro()+"\nNome:"+getNome_pro()+"\nSeção:"+getLocalizacao_pro();}
 }

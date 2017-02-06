@@ -92,22 +92,22 @@ ContentValues contentValues = new ContentValues();
     }
 
     // buscar produto tela inicial
-    public List<String> buscarProdutoTelaInicial(String busca){
+
+    public List<Produto> buscaparodutotela(String busca){
         SQLiteDatabase db = getWritableDatabase();
-        String sql = "SELECT * FROM "+TABELA+ "where nome like '%"+busca+"%' ;";
-        Cursor c = db.rawQuery(sql,null);
-
-        List<String> produtos = new ArrayList<>();
-        while (c.moveToNext()){
-
-            produtos.add("Cód: "+ c.getString(c.getColumnIndex("codigo"))+"   Descrição: "+c.getString(c.getColumnIndex("nome")) +
-                    " Seção: "+c.getString(c.getColumnIndex("localizacao")));
-
+        String sql = "SELECT * FROM "+TABELA+" where nome like '%"+busca+"%'";
+        Cursor c = db.rawQuery(sql, null);
+        List<Produto> produtos = new ArrayList<Produto>();
+        while (c.moveToNext()) {
+            Produto produto = new Produto();
+            produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
+            produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
+            produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produtos.add(produto);
         }
         c.close();
         return produtos;
     }
-
     public List<Produto> busca(){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "SELECT * FROM "+TABELA+";";
@@ -124,6 +124,7 @@ ContentValues contentValues = new ContentValues();
         c.close();
         return produtos;
     }
+
     public Produto buscaparoduto(String cod){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "SELECT * FROM "+TABELA+"where codigo="+cod+";";

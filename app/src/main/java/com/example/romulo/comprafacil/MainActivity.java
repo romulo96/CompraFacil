@@ -1,36 +1,66 @@
 package com.example.romulo.comprafacil;
 
 import android.content.Intent;
+import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.SearchView;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.romulo.comprafacil.DAO.ProdutoDAO;
+import com.example.romulo.comprafacil.MODEL.Produto;
 
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity {
+    private String conteudopesq;
+    private static ListView lista;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        lista=(ListView)findViewById(R.id.ListPesquisa);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final SearchView pesquisa = (SearchView) findViewById(R.id.pesquisa);
-        pesquisa.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String result = pesquisa.getQuery().toString();
-                AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
-                alerta.setMessage(result);
-                alerta.show();
+        final SearchView pesquisa =(SearchView) findViewById(R.id.pesquisa);
+        final AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
+
+        pesquisa.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+              @Override
+              public boolean onQueryTextSubmit(String query) {
+                  return false;
+              }
+
+              @Override
+              public boolean onQueryTextChange(String newText) {
+                  final ProdutoDAO PD = new ProdutoDAO(MainActivity.this);
+                  conteudopesq=pesquisa.getQuery().toString();
+              //    dlg.setMessage(conteudopesq);
+              //    dlg.setNeutralButton("OK", null);
+              //    dlg.show();
+                    List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
+                  //List<Produto> produtos=PD.busca();
+                  ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
+                      lista.setAdapter(adapter);
+
+                  return false;
+              }
+          });
 
             }
-        });
-    }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
