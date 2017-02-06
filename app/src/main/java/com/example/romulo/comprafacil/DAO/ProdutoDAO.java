@@ -58,9 +58,7 @@ ContentValues contentValues = new ContentValues();
             contentValues.put(NOME, nome);
             contentValues.put(LOCALIZACAO, localizacao);
 
-
             SQLiteDatabase db = getWritableDatabase();
-            // ContentValues dados = getContentValuesProduto(produto);
 
             db.insert(TABELA, null, contentValues);
         } catch (SQLiteAbortException e){
@@ -77,24 +75,6 @@ ContentValues contentValues = new ContentValues();
         dados.put(LOCALIZACAO, produto.getLocalizacao_pro());
         return dados;
     }
-//    public List<Produto> buscar(){
-//        SQLiteDatabase db = getWritableDatabase();
-//        String sql = "SELECT * FROM "+TABELA+";";
-//        Cursor c = db.rawQuery(sql,null);
-//
-//        List<Produto> produtos = new ArrayList<Produto>();
-//        while (c.moveToNext()){
-//            Produto produto = new Produto();
-//            produto.setCod_pro(c.getInt(   c.getColumnIndex(CODIGO)));
-//            produto.setNome_pro(c.getString(c.getColumnIndex(NOME)));
-//            produto.setLocalizacao_pro(c.getString(c.getColumnIndex(LOCALIZACAO)));
-//            produtos.add(produto);
-//
-//        }
-//        c.close();
-//        return produtos;
-//    }
-
     public List<String> buscarProduto(){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "SELECT * FROM "+TABELA+";";
@@ -128,15 +108,41 @@ ContentValues contentValues = new ContentValues();
         return produtos;
     }
 
+    public List<Produto> busca(){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "SELECT * FROM "+TABELA+";";
+        Cursor c = db.rawQuery(sql, null);
 
+        List<Produto> produtos = new ArrayList<Produto>();
+        while (c.moveToNext()) {
+            Produto produto = new Produto();
+            produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
+            produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
+            produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produtos.add(produto);
+        }
+        c.close();
+        return produtos;
+    }
+    public Produto buscaparoduto(String cod){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "SELECT * FROM "+TABELA+"where codigo="+cod+";";
+        Cursor c = db.rawQuery(sql, null);
 
+           Produto produto = new Produto();
+            produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
+            produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
+            produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+        c.close();
+        return produto;
+    }
 
     // DANDO ERRO POR A VARIAVEL SER DO TIPO INTEIRO
     public void deletar(Produto produto){
         SQLiteDatabase db = getWritableDatabase();
 
-        int [] params = {produto.getCod_pro()};
-       // db.delete(TABELA, CODIGO+" = ?", params);
+        String [] params = {produto.getCod_pro().toString()};
+        db.delete("PRODUTOS", "codigo = ?", params);
     }
 
     public void limpar(){
@@ -149,8 +155,8 @@ ContentValues contentValues = new ContentValues();
         SQLiteDatabase db = getWritableDatabase();
 
         ContentValues dados = getContentValuesProduto(produto);
-        int [] params = {produto.getCod_pro()};
-        //db.update(TABELA,dados,CODIGO +"= ? ",params);
+        String [] params = {produto.getCod_pro().toString()};
+        db.update("PRODUTOS",dados, "codigo = ?",params);
     }
 
 }

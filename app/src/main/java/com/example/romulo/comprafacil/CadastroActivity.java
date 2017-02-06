@@ -11,16 +11,19 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
+import com.example.romulo.comprafacil.MODEL.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +33,9 @@ public class CadastroActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-
+    private static ListView list;
     private ViewPager mViewPager;
-
+    private static  List<String> listm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,25 @@ public class CadastroActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(CadastroActivity.this, android.R.layout.simple_list_item_1, listm);
         list.setAdapter(adapter);*/
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        // Set up the ViewPager with the sections adapter.
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        ProdutoDAO PD = new ProdutoDAO(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -130,12 +152,20 @@ public class CadastroActivity extends AppCompatActivity {
                 View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
 
                 ProdutoDAO PD = new ProdutoDAO(getActivity());
-                ListView list = (ListView) rootView.findViewById(R.id.ListProdutos);
-                ArrayAdapter<String> adapter;
-                List<String> listm = new ArrayList<>();
-                listm = PD.buscarProduto();
-                adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listm);
+                list = (ListView) rootView.findViewById(R.id.ListProdutos);
+                List<Produto> produtos=PD.busca(); PD.close();
+                ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(getActivity(), android.R.layout.simple_list_item_1, produtos);
                 list.setAdapter(adapter);
+                list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> lista, View produto_s, int i, long l) {
+                    Produto produto=(Produto) list.getItemAtPosition(i);
+                        Intent intentgoAlterar=new Intent(getActivity(),CadastraProdutoActivity.class);
+                        intentgoAlterar.putExtra("produto",produto);
+                        startActivity(intentgoAlterar);
+                    }
+                    });
+                registerForContextMenu(list);
                 return rootView;
             }
 
@@ -146,6 +176,26 @@ public class CadastroActivity extends AppCompatActivity {
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
+        MenuItem menuContexto = menu.add("deletar");
+        menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                Produto produto = (Produto) list.getItemAtPosition(info.position);
+                ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
+                PD.deletar(produto);
+                List<Produto> produtos=PD.busca(); PD.close();
+                ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(CadastroActivity.this, android.R.layout.simple_list_item_1, produtos);
+                list.setAdapter(adapter);
+                PD.close();
+                return false;
+            }
+        });
+
+
+    }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {

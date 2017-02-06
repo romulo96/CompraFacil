@@ -7,15 +7,19 @@ import java.io.Serializable;
  */
 
 public class Produto implements Serializable {
-    private int cod_pro;
+    private String cod_pro;
     private String nome_pro;
     private String localizacao_pro;
 
-    public int getCod_pro() {
+    public void setLocalizacao_pro(String localizacao_pro) {
+        this.localizacao_pro = localizacao_pro;
+    }
+
+    public String getCod_pro() {
         return cod_pro;
     }
 
-    public void setCod_pro(int cod_pro) {
+    public void setCod_pro(String cod_pro) {
         this.cod_pro = cod_pro;
     }
 
@@ -31,7 +35,6 @@ public class Produto implements Serializable {
         return localizacao_pro;
     }
 
-    public void setLocalizacao_pro(String localizacao_pro) {
-        this.localizacao_pro = localizacao_pro;
-    }
+    @Override
+    public String toString(){return "Codigo:"+getCod_pro()+"\nNome:"+getNome_pro()+"\n Secao:"+getLocalizacao_pro();}
 }
