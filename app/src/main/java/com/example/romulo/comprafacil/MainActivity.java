@@ -19,8 +19,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
         final SearchView pesquisa = (SearchView) findViewById(R.id.pesquisa);
         pesquisa.setOnSearchClickListener(new View.OnClickListener() {
             @Override
@@ -43,19 +41,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        //Para fechar aplicação na tela de lista de produtos
+        if(getIntent().getBooleanExtra("SAIR", false)){
+            finish();
+        }
+        super.onResume();
+    }
+
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
 
         switch (item.getItemId()){
             case R.id.action_settings:
                 Intent activity_login = new Intent(this, LoginActivity.class);
                 startActivity(activity_login);
+                return true;
 
+            //Menu inflater para sair da aplicação
+            case R.id.action_sair:
+                this.finish();
                 return true;
 
             default: return false;
         }
+
+
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

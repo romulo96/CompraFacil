@@ -12,20 +12,6 @@
     tools:context="com.example.romulo.comprafacil.CadastraProdutoActivity">
 
 
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Código"
-        android:ems="10"
-        android:layout_marginTop="15dp"
-        android:id="@+id/editTextCodProd1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,6 +60,30 @@
         android:ems="10"
         android:id="@+id/editTextSecao"
         android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Código"
+        android:ems="10"
+        android:layout_marginTop="26dp"
+        android:id="@+id/editTextCodProd1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewTelaCad"
+        android:layout_marginLeft="76dp"
+        android:layout_marginStart="76dp"
+        android:text="CADASTRO DE PRODUTOS"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

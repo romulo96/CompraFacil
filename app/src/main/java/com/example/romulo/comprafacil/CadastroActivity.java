@@ -27,20 +27,10 @@ import java.util.List;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    //
+
     private ViewPager mViewPager;
 
     @Override
@@ -50,20 +40,13 @@ public class CadastroActivity extends AppCompatActivity {
 
 
       /*  ProdutoDAO PD = new ProdutoDAO(this);
-
         ListView list = (ListView) findViewById(R.id.ListProdutos);
-
         ArrayAdapter<String> adapter;
-
         List<String> listm = new ArrayList<>();
-
        // listm = PD.buscarProduto();
         listm.add("oi");
-
         adapter = new ArrayAdapter<String>(CadastroActivity.this, android.R.layout.simple_list_item_1, listm);
-
         list.setAdapter(adapter);*/
-
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -79,26 +62,9 @@ public class CadastroActivity extends AppCompatActivity {
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-
-
-
-
-
-
-
-
     }
 
-
+    //Comentar se quiser que não apareceça menu inflater sair
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -114,7 +80,12 @@ public class CadastroActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_tela2_cadastro) {
+            //Menu inflater para sair da aplicação na tela de lista de produtos
+            Intent  it = new Intent(getApplicationContext(), MainActivity.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            it.putExtra("SAIR", true);
+            startActivity(it);
             return true;
         }
 
@@ -144,40 +115,26 @@ public class CadastroActivity extends AppCompatActivity {
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
 
-
-
-
             return fragment;
-
 
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
                 View rootView = inflater.inflate(R.layout.fragment_secoes, container, false);
-           //     TextView tx = (TextView) rootView.findViewById(R.id.textView);
-            //   tx.setText("oi");
 
                 return rootView;
             }else {
                 View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
-              //  TextView tx = (TextView) rootView.findViewById(R.id.textView);
-              //  tx.setText("oi");
-
-               // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-                //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
                 ProdutoDAO PD = new ProdutoDAO(getActivity());
                 ListView list = (ListView) rootView.findViewById(R.id.ListProdutos);
-                 ArrayAdapter<String> adapter;
+                ArrayAdapter<String> adapter;
                 List<String> listm = new ArrayList<>();
                 listm = PD.buscarProduto();
-                // listm.add("oi");
                 adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listm);
-             //  adapter = ArrayAdapter.createFromResource(get)
                 list.setAdapter(adapter);
                 return rootView;
             }
@@ -232,7 +189,5 @@ public class CadastroActivity extends AppCompatActivity {
         Intent activity_cadastra_secao = new Intent(this, CadastraSecaoActivity.class);
         startActivity(activity_cadastra_secao);
     }
-
-
 
 }

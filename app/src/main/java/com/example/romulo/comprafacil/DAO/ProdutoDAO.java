@@ -103,8 +103,8 @@ ContentValues contentValues = new ContentValues();
         List<String> produtos = new ArrayList<>();
         while (c.moveToNext()){
 
-            produtos.add("Cód: "+ c.getString(c.getColumnIndex("codigo"))+"   Descrição: "+c.getString(c.getColumnIndex("nome")) +
-            " Seção: "+c.getString(c.getColumnIndex("localizacao")));
+            produtos.add("Código: " + c.getString(c.getColumnIndex("codigo"))+  "\nDescrição: " +c.getString(c.getColumnIndex("nome")) +
+            "\nSeção: "+c.getString(c.getColumnIndex("localizacao")));
 
         }
         c.close();

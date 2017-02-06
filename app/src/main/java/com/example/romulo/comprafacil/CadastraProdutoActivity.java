@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
 
-public class CadastraProdutoActivity extends AppCompatActivity {
+public class  CadastraProdutoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,28 +25,33 @@ public class CadastraProdutoActivity extends AppCompatActivity {
         final EditText nome = (EditText) findViewById(R.id.editTextNomProd1);
         final EditText localizacao = (EditText) findViewById(R.id.editTextSecao);
 
-       // final String oi = String.valueOf(codigo.getText());
-
         final String nomeString = nome.getText().toString();
-     //   final String localizacaoString = localizacao.getSelectedItem().toString();
-
 
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  PD.inserirProduto(codigoString,nomeString,"localizacaoString");
-                String codigoString = codigo.getText().toString();
-                String nomeString = nome.getText().toString();
-                String localizacaoString = localizacao.getText().toString();
-                //String oi = String.valueOf(codigo.getText());
-                //AlertDialog.Builder al = new AlertDialog.Builder(CadastraProdutoActivity.this);
-               // al.setMessage(">"+codigoString+"r"+nomeString+oi);
-                //al.show();
-                PD.inserirProduto(codigoString,nomeString,localizacaoString);
-                finish();
-            }
-        });
 
+                   //Obrigar a não cadastrar vazio
+                    if (codigo.getText().toString().equals("")) {
+                        codigo.setError("Insira o código");
+                        codigo.requestFocus();
+                    } else if (nome.getText().toString().equals("")) {
+                        nome.setError("Insira nome do produto");
+                        nome.requestFocus();
+                    } else if (localizacao.getText().toString().equals("")) {
+                        localizacao.setError("Insira nome da seção");
+                        localizacao.requestFocus();
+                    } else {
+
+                        String codigoString = codigo.getText().toString();
+                        String nomeString = nome.getText().toString();
+                        String localizacaoString = localizacao.getText().toString();
+                        PD.inserirProduto(codigoString,nomeString,localizacaoString);
+                        finish();
+                    }
+            }
+
+        });
 
     }
 }
