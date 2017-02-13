@@ -10,9 +10,17 @@ public class Produto implements Serializable {
     private String cod_pro;
     private String nome_pro;
     private String localizacao_pro;
-
+    private String foto;
     public void setLocalizacao_pro(String localizacao_pro) {
         this.localizacao_pro = localizacao_pro;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public String getCod_pro() {

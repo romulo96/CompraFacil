@@ -27,19 +27,22 @@ public class ProdutoDAO extends SQLiteOpenHelper  {
         private static final String NOME        ="nome";
         private static final String TABELA      ="PRODUTOS";
         private static final String LOCALIZACAO = "localizacao";
-
+        private static final String FOTO="foto";
     // CRIAÇÃO DAS TABELAS NO BANCO DE DADO
     @Override
     public void onCreate (SQLiteDatabase db){
-        String sql = "CREATE TABLE PRODUTOS (codigo TEXT NOT NULL, nome TEXT NOT NULL, localizacao TEXT NOT NULL);";
+        String sql = "CREATE TABLE PRODUTOS (codigo TEXT NOT NULL, nome TEXT NOT NULL, localizacao TEXT NOT NULL,foto TEXT );";
         db.execSQL(sql);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        String sql = "DROP TABLE IF EXISTS "+TABELA;
-        db.execSQL(sql);
-        onCreate(db);
+        String sql = "";
+        switch (oldVersion) {
+            case 1:
+                sql = "ALTER TABLE PRODUTOS ADD COLUMN foto TEXT";
+                db.execSQL(sql); // indo para versao 2
+        }
     }
 
     // FUNÇÃO DE INSERÇÃO NO BANCO
@@ -51,13 +54,13 @@ public class ProdutoDAO extends SQLiteOpenHelper  {
 
     }
 
-    public void inserirProduto(String codigo, String nome, String localizacao){
+    public void inserirProduto(String codigo, String nome, String localizacao,String foto){
 ContentValues contentValues = new ContentValues();
         try {
             contentValues.put(CODIGO, codigo);
             contentValues.put(NOME, nome);
             contentValues.put(LOCALIZACAO, localizacao);
-
+            contentValues.put(FOTO,foto);
             SQLiteDatabase db = getWritableDatabase();
 
             db.insert(TABELA, null, contentValues);
@@ -73,6 +76,7 @@ ContentValues contentValues = new ContentValues();
         dados.put(CODIGO, produto.getCod_pro());
         dados.put(NOME, produto.getNome_pro());
         dados.put(LOCALIZACAO, produto.getLocalizacao_pro());
+        dados.put(FOTO,produto.getFoto());
         return dados;
     }
     public List<String> buscarProduto(){
@@ -103,6 +107,7 @@ ContentValues contentValues = new ContentValues();
             produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
             produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
             produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produto.setFoto(c.getString(c.getColumnIndex("foto")));
             produtos.add(produto);
         }
         c.close();
@@ -119,6 +124,7 @@ ContentValues contentValues = new ContentValues();
             produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
             produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
             produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produto.setFoto(c.getString(c.getColumnIndex("foto")));
             produtos.add(produto);
         }
         c.close();
@@ -134,6 +140,7 @@ ContentValues contentValues = new ContentValues();
             produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
             produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
             produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produto.setFoto(c.getString(c.getColumnIndex("foto")));
         c.close();
         return produto;
     }
