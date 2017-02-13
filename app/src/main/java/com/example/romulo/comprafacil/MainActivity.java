@@ -27,10 +27,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Lista vinculando XML a classe
         lista=(ListView)findViewById(R.id.ListPesquisa);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Botão para acionar a pesquisa
         final SearchView pesquisa =(SearchView) findViewById(R.id.pesquisa);
         final AlertDialog.Builder dlg = new AlertDialog.Builder(MainActivity.this);
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
               }
 
               @Override
+              //
               public boolean onQueryTextChange(String newText) {
                   final ProdutoDAO PD = new ProdutoDAO(MainActivity.this);
                   conteudopesq=pesquisa.getQuery().toString();
@@ -48,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
               //    dlg.setNeutralButton("OK", null);
               //    dlg.show();
                     List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
-                  //List<Produto> produtos=PD.busca();
                   ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
                       lista.setAdapter(adapter);
 
@@ -57,9 +60,6 @@ public class MainActivity extends AppCompatActivity {
           });
 
             }
-
-
-
 
 
     @Override
@@ -97,18 +97,5 @@ public class MainActivity extends AppCompatActivity {
             default: return false;
         }
 
-
-
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-      //  int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-         //   return true;
-  //      }
-
-//        return super.onOptionsItemSelected(item);
     }
 }

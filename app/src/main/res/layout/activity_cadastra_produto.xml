@@ -36,20 +36,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="43dp" />
 
-    <Button
-        android:text="Cadastrar"
-        android:id="@+id/cadrasProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:elevation="0dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-        style="@android:style/Widget.Button"
-        android:background="@color/colorPrimary"
-        tools:ignore="HardcodedText,UnusedAttribute"
-        android:layout_below="@+id/editTextSecao"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -74,6 +60,45 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Foto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewFoto"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginBottom="27dp"
+        android:layout_above="@+id/cadrasProduto"
+        android:layout_alignRight="@+id/cadrasProduto"
+        android:layout_alignEnd="@+id/cadrasProduto"
+        android:layout_marginRight="58dp"
+        android:layout_marginEnd="58dp" />
+
+    <Button
+        android:id="@+id/formulario_botao_foto"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@android:drawable/ic_menu_camera"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_alignBaseline="@+id/textViewFoto"
+        android:layout_alignBottom="@+id/textViewFoto"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Cadastrar"
+        android:id="@+id/cadrasProduto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+        style="@android:style/Widget.Button"
+        android:background="@color/colorPrimary"
+        tools:ignore="HardcodedText,UnusedAttribute"
+        android:layout_marginBottom="77dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

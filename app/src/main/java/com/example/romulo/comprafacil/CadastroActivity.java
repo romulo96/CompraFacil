@@ -178,7 +178,8 @@ public class CadastroActivity extends AppCompatActivity {
      */
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
-        MenuItem menuContexto = menu.add("deletar");
+        //Botão para deletar
+        MenuItem menuContexto = menu.add("Deletar");
         menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
