@@ -1,6 +1,8 @@
 package com.example.romulo.comprafacil;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +13,12 @@ import android.widget.EditText;
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
 import com.example.romulo.comprafacil.MODEL.Produto;
 
+import java.io.File;
+
 public class  CadastraProdutoActivity extends AppCompatActivity {
     private Produto produto;
+    private Integer CODIGO_CAMERA=530;
+    private static String caminho;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,7 @@ public class  CadastraProdutoActivity extends AppCompatActivity {
         final EditText codigo = (EditText) findViewById(R.id.editTextCodProd1);
         final EditText nome = (EditText) findViewById(R.id.editTextNomProd1);
         final EditText localizacao = (EditText) findViewById(R.id.editTextSecao);
+        final Button botaofoto=(Button) findViewById(R.id.formulario_botao_foto);
 
         final String nomeString = nome.getText().toString();
         if(produto!=null){
@@ -34,6 +41,16 @@ public class  CadastraProdutoActivity extends AppCompatActivity {
         nome.setText(produto.getNome_pro());
             localizacao.setText(produto.getLocalizacao_pro());
         }
+        botaofoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentCamera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                caminho = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
+                File arquivoFoto = new File(caminho);
+                intentCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(arquivoFoto));
+                startActivityForResult(intentCamera, CODIGO_CAMERA);
+            }
+        });
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,10 +74,11 @@ public class  CadastraProdutoActivity extends AppCompatActivity {
                             produto.setCod_pro(codigo.getText().toString());
                             produto.setNome_pro(nome.getText().toString());
                             produto.setLocalizacao_pro(localizacao.getText().toString());
+                            produto.setFoto(caminho);
                             PD.alterar(produto);
 
                         }else{
-                            PD.inserirProduto(codigoString, nomeString, localizacaoString);
+                            PD.inserirProduto(codigoString, nomeString, localizacaoString,caminho);
                         }finish();
                     }
             }
