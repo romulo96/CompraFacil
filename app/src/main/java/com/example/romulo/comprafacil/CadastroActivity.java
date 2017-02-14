@@ -179,7 +179,9 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
         //Botão para deletar
-        MenuItem menuContexto = menu.add("Deletar");
+        MenuItem menuContexto;
+
+        menuContexto= menu.add("Deletar");
         menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -194,7 +196,19 @@ public class CadastroActivity extends AppCompatActivity {
                 return false;
             }
         });
-
+        menuContexto = menu.add("Exibir Foto");
+        menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                Produto produto = (Produto) list.getItemAtPosition(info.position);
+                ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
+                Intent letgol=new Intent(CadastroActivity.this,ExibeFotoActivity.class);
+                letgol.putExtra("produto",produto);
+                startActivity(letgol);
+                return false;
+            }
+        });
 
     }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
