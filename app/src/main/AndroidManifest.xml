@@ -29,7 +29,8 @@
             android:label="@string/title_activity_cadastro2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CadastraProdutoActivity" />
-        <activity android:name=".CadastraSecaoActivity"></activity>
+        <activity android:name=".CadastraSecaoActivity" />
+        <activity android:name=".ExibeFotoActivity"></activity>
     </application>
 
 </manifest>
