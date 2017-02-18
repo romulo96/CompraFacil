@@ -23,7 +23,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
+import com.example.romulo.comprafacil.DAO.SecaoDAO;
+import com.example.romulo.comprafacil.MODEL.AdapterProduto;
 import com.example.romulo.comprafacil.MODEL.Produto;
+import com.example.romulo.comprafacil.MODEL.Secao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
-    private static ListView list;
+    private static ListView list,listSecao;
     private ViewPager mViewPager;
     private static  List<String> listm;
     @Override
@@ -146,7 +149,21 @@ public class CadastroActivity extends AppCompatActivity {
 
             if (getArguments().getInt(ARG_SECTION_NUMBER) == 2) {
                 View rootView = inflater.inflate(R.layout.fragment_secoes, container, false);
-
+                SecaoDAO PD= new SecaoDAO(getActivity());
+                listSecao=(ListView) rootView.findViewById(R.id.listSecao);
+                List<Secao> secaos = PD.busca();PD.close();
+                ArrayAdapter<Secao> adapter = new ArrayAdapter<Secao>(getActivity(), android.R.layout.simple_list_item_1, secaos);
+                listSecao.setAdapter(adapter);
+                listSecao.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> lista, View secao_s, int i, long l) {
+                        Secao secao=(Secao) listSecao.getItemAtPosition(i);
+                        Intent intentgoAlterar=new Intent(getActivity(),CadastraSecaoActivity.class);
+                        intentgoAlterar.putExtra("secao",secao);
+                        startActivity(intentgoAlterar);
+                    }
+                });
+                registerForContextMenu(listSecao);
                 return rootView;
             }else {
                 View rootView = inflater.inflate(R.layout.fragment_cadastro, container, false);
@@ -154,7 +171,7 @@ public class CadastroActivity extends AppCompatActivity {
                 ProdutoDAO PD = new ProdutoDAO(getActivity());
                 list = (ListView) rootView.findViewById(R.id.ListProdutos);
                 List<Produto> produtos=PD.busca(); PD.close();
-                ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(getActivity(), android.R.layout.simple_list_item_1, produtos);
+                AdapterProduto adapter = new AdapterProduto(produtos,getActivity());
                 list.setAdapter(adapter);
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override
@@ -190,7 +207,7 @@ public class CadastroActivity extends AppCompatActivity {
                 ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
                 PD.deletar(produto);
                 List<Produto> produtos=PD.busca(); PD.close();
-                ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(CadastroActivity.this, android.R.layout.simple_list_item_1, produtos);
+                AdapterProduto adapter = new AdapterProduto(produtos,CadastroActivity.this);
                 list.setAdapter(adapter);
                 PD.close();
                 return false;

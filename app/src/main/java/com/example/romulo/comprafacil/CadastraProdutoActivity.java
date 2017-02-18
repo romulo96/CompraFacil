@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
+import com.example.romulo.comprafacil.MODEL.CadastraProdutoHelper;
 import com.example.romulo.comprafacil.MODEL.Produto;
 
 import java.io.File;
@@ -22,7 +23,9 @@ import java.io.File;
 public class  CadastraProdutoActivity extends AppCompatActivity {
     private Produto produto;
     private Integer CODIGO_CAMERA=530;
-    private static String caminho;
+    private String caminho;
+    private CadastraProdutoHelper helper;
+    private int temp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,19 +34,13 @@ public class  CadastraProdutoActivity extends AppCompatActivity {
         final ProdutoDAO PD = new ProdutoDAO(this);
         Intent intecaopegar=getIntent();
         produto=(Produto)intecaopegar.getSerializableExtra("produto");
+        helper= new CadastraProdutoHelper(this);
 
-        Button botao = (Button) findViewById(R.id.cadrasProduto);
-
-        final EditText codigo = (EditText) findViewById(R.id.editTextCodProd1);
-        final EditText nome = (EditText) findViewById(R.id.editTextNomProd1);
-        final EditText localizacao = (EditText) findViewById(R.id.editTextSecao);
         final Button botaofoto=(Button) findViewById(R.id.formulario_botao_foto);
-
-        final String nomeString = nome.getText().toString();
+        Button botao = (Button) findViewById(R.id.cadrasProduto);
         if(produto!=null){
-        codigo.setText(produto.getCod_pro());
-        nome.setText(produto.getNome_pro());
-            localizacao.setText(produto.getLocalizacao_pro());
+            temp=1;
+            helper.preencher(produto);
         }
         botaofoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,39 +53,35 @@ public class  CadastraProdutoActivity extends AppCompatActivity {
             }
         });
         botao.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
                    //Obrigar a não cadastrar vazio
-                    if (codigo.getText().toString().equals("")) {
-                        codigo.setError("Insira o código");
-                        codigo.requestFocus();
-                    } else if (nome.getText().toString().equals("")) {
-                        nome.setError("Insira nome do produto");
-                        nome.requestFocus();
-                    } else if (localizacao.getText().toString().equals("")) {
-                        localizacao.setError("Insira nome da seção");
-                        localizacao.requestFocus();
-                    } else {
-
-                        String codigoString = codigo.getText().toString();
-                        String nomeString = nome.getText().toString();
-                        String localizacaoString = localizacao.getText().toString();
-                        if(produto!=null){
-                            produto.setCod_pro(codigo.getText().toString());
-                            produto.setNome_pro(nome.getText().toString());
-                            produto.setLocalizacao_pro(localizacao.getText().toString());
-                            produto.setFoto(caminho);
+                        produto=helper.pegaProduto();
+                        if(caminho==null){
+                            produto.setFoto("vazio");
+                        }else{
+                        produto.setFoto(caminho);}
+                        if(temp==1){
                             PD.alterar(produto);
 
                         }else{
-                            PD.inserirProduto(codigoString, nomeString, localizacaoString,caminho);
+                            PD.inserir(produto);
                         }finish();
                     }
-            }
+
 
         });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CODIGO_CAMERA) {
 
+            }
+        }
+
+    }
 
 }

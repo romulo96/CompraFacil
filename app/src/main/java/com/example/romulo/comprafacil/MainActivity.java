@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
+import com.example.romulo.comprafacil.MODEL.AdapterProduto;
 import com.example.romulo.comprafacil.MODEL.Produto;
 
 import java.util.List;
@@ -51,8 +52,12 @@ public class MainActivity extends AppCompatActivity {
               //    dlg.setMessage(conteudopesq);
               //    dlg.setNeutralButton("OK", null);
               //    dlg.show();
+
                     List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
-                  ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
+              //    ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
+              //        lista.setAdapter(adapter);
+
+                       AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                       lista.setAdapter(adapter);
 
                   return false;

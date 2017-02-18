@@ -76,7 +76,7 @@ ContentValues contentValues = new ContentValues();
         dados.put(CODIGO, produto.getCod_pro());
         dados.put(NOME, produto.getNome_pro());
         dados.put(LOCALIZACAO, produto.getLocalizacao_pro());
-        dados.put(FOTO,produto.getFoto());
+        dados.put(FOTO, produto.getFoto());
         return dados;
     }
     public List<String> buscarProduto(){
@@ -131,7 +131,7 @@ ContentValues contentValues = new ContentValues();
         return produtos;
     }
 
-    public Produto buscaparoduto(String cod){
+    public Produto buscarproduto(String cod){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "SELECT * FROM "+TABELA+"where codigo="+cod+";";
         Cursor c = db.rawQuery(sql, null);

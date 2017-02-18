@@ -22,12 +22,16 @@ public class ExibeFotoActivity extends AppCompatActivity {
         Intent intecaopegar=getIntent();
         produto=(Produto) intecaopegar.getSerializableExtra("produto");
         campoFoto=(ImageView) findViewById(R.id.imageViewProduto);
-        carregaImagem(produto.getFoto());
+        if(produto.getFoto().equals("vazio")){
+
+        }else{
+            carregaImagem(produto.getFoto());
+        }
 
 
     }
     public void carregaImagem(String caminhoFoto) {
-        if (caminhoFoto != null) {
+        if (caminhoFoto != "vazio") {
             Bitmap bitmap = BitmapFactory.decodeFile(caminhoFoto);
             Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 300, 300, true);
             campoFoto.setImageBitmap(bitmapReduzido);
