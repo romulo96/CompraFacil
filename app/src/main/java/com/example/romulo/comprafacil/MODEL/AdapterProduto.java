@@ -54,12 +54,12 @@ public class AdapterProduto extends BaseAdapter {
         ImageView foto= (ImageView) view.findViewById(R.id.Foto_pequena);
         cod.setText("Codigo: "+produto.getCod_pro());
         nome.setText(produto.getNome_pro());
-        local.setText("Localização: "+produto.getLocalizacao_pro());
+        local.setText("Seção: "+produto.getLocalizacao_pro());
         if(produto.getFoto().equals("vazio")){
 
         }else{
         Bitmap bitmap = BitmapFactory.decodeFile(produto.getFoto());
-        Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 150, 150, true);
+        Bitmap bitmapReduzido = Bitmap.createScaledBitmap(bitmap, 180, 180, true);
         foto.setImageBitmap(bitmapReduzido);
         foto.setScaleType(ImageView.ScaleType.FIT_XY);
         foto.setTag(produto.getFoto());

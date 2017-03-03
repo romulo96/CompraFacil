@@ -14,24 +14,61 @@
     tools:context="com.example.romulo.comprafacil.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:id="@+id/pesquisa"
-        android:layout_height="wrap_content"
-        android:queryHint="Busque por produtos..."
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:background="@android:color/background_light"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="410dp" />
 
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.69"
+        android:layout_alignBottom="@+id/pesquisa"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="42dp"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:text="Nome"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbtn1" />
+
+        <RadioButton
+            android:text="Seção"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbtn2"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton" />
+
+        <RadioButton
+            android:text="Codigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbtn3"
+            android:layout_weight="1" />
+    </RadioGroup>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ListPesquisa"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="184dp"
+        android:layout_below="@+id/radioGroup"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:id="@+id/pesquisa"
+        android:layout_height="wrap_content"
+        android:queryHint="Busque por produtos..."
+        android:background="@android:color/background_light"
+        android:weightSum="1"
+        android:layout_marginTop="117dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+    </SearchView>
+
 </RelativeLayout>

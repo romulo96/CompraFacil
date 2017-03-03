@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.SearchView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
@@ -24,6 +25,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private String conteudopesq;
     private static ListView lista;
+    private RadioButton nome;
+    private RadioButton codigo;
+    private RadioButton secao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,17 +52,26 @@ public class MainActivity extends AppCompatActivity {
               //
               public boolean onQueryTextChange(String newText) {
                   final ProdutoDAO PD = new ProdutoDAO(MainActivity.this);
+                  nome=(RadioButton) findViewById(R.id.rbtn1);
+                  codigo=(RadioButton) findViewById(R.id.rbtn3);
+                  secao=(RadioButton) findViewById(R.id.rbtn2);
                   conteudopesq=pesquisa.getQuery().toString();
-              //    dlg.setMessage(conteudopesq);
-              //    dlg.setNeutralButton("OK", null);
-              //    dlg.show();
-
-                    List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
-              //    ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(MainActivity.this, android.R.layout.simple_list_item_1, produtos);
-              //        lista.setAdapter(adapter);
-
-                       AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
+                  if(nome.isChecked()){
+                      List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
+                      AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                       lista.setAdapter(adapter);
+                  }
+                  if(codigo.isChecked()){
+                      List<Produto> produtos=PD.buscaparodutotelaSecao(conteudopesq);
+                      AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
+                      lista.setAdapter(adapter);
+                  }else{
+                      List<Produto> produtos=PD.buscaparodutotelaCodigo(conteudopesq);
+                          AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
+                          lista.setAdapter(adapter);
+                  }
+
+
 
                   return false;
               }

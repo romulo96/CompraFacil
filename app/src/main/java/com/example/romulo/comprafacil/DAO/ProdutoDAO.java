@@ -113,6 +113,38 @@ ContentValues contentValues = new ContentValues();
         c.close();
         return produtos;
     }
+    public List<Produto> buscaparodutotelaCodigo(String busca){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "SELECT * FROM "+TABELA+" where codigo like '%"+busca+"%'";
+        Cursor c = db.rawQuery(sql, null);
+        List<Produto> produtos = new ArrayList<Produto>();
+        while (c.moveToNext()) {
+            Produto produto = new Produto();
+            produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
+            produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
+            produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produto.setFoto(c.getString(c.getColumnIndex("foto")));
+            produtos.add(produto);
+        }
+        c.close();
+        return produtos;
+    }
+    public List<Produto> buscaparodutotelaSecao(String busca){
+        SQLiteDatabase db = getWritableDatabase();
+        String sql = "SELECT * FROM "+TABELA+" where localizacao like '%"+busca+"%'";
+        Cursor c = db.rawQuery(sql, null);
+        List<Produto> produtos = new ArrayList<Produto>();
+        while (c.moveToNext()) {
+            Produto produto = new Produto();
+            produto.setCod_pro(c.getString(c.getColumnIndex("codigo")));
+            produto.setNome_pro(c.getString(c.getColumnIndex("nome")));
+            produto.setLocalizacao_pro(c.getString(c.getColumnIndex("localizacao")));
+            produto.setFoto(c.getString(c.getColumnIndex("foto")));
+            produtos.add(produto);
+        }
+        c.close();
+        return produtos;
+    }
     public List<Produto> busca(){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "SELECT * FROM "+TABELA+";";
