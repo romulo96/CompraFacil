@@ -56,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
                   codigo=(RadioButton) findViewById(R.id.rbtnCodigo);
                   secao=(RadioButton) findViewById(R.id.rbtnSecao);
                   conteudopesq=pesquisa.getQuery().toString();
+                  if(conteudopesq.equals("")){}else{
                   if(nome.isChecked()){
                       List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
                       AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                       lista.setAdapter(adapter);
-                  }
-                  if(codigo.isChecked()){
+                  }else{if(codigo.isChecked()){
                       List<Produto> produtos=PD.buscaparodutotelaCodigo(conteudopesq);
                       AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                       lista.setAdapter(adapter);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                       List<Produto> produtos=PD.buscaparodutotelaSecao(conteudopesq);
                           AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                           lista.setAdapter(adapter);
-                  }
+                  }}}
 
 
 
