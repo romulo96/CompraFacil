@@ -19,43 +19,46 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.69"
-        android:layout_alignBottom="@+id/pesquisa"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup2"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="42dp"
-        android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:layout_marginTop="34dp">
 
         <RadioButton
-            android:text="Nome"
+            android:id="@+id/rbtnNome"
             android:layout_width="103dp"
             android:layout_height="wrap_content"
-            android:id="@+id/rbtn1" />
+            android:text="Nome" />
+
+
+
 
         <RadioButton
-            android:text="Seção"
+            android:id="@+id/rbtnCodigo"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rbtn2"
             android:layout_weight="1"
-            style="@style/Widget.AppCompat.CompoundButton.RadioButton" />
+            android:text="Código" />
 
         <RadioButton
-            android:text="Codigo"
+            android:id="@+id/rbtnSecao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rbtn3"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:text="Seção" />
     </RadioGroup>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/ListPesquisa"
-        android:layout_marginTop="184dp"
-        android:layout_below="@+id/radioGroup"
+        android:layout_below="@+id/pesquisa"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp" />
 
     <SearchView
         android:layout_width="match_parent"
@@ -64,11 +67,24 @@
         android:queryHint="Busque por produtos..."
         android:background="@android:color/background_light"
         android:weightSum="1"
-        android:layout_marginTop="117dp"
+        android:layout_marginTop="79dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
     </SearchView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="6dp"
+        android:text="Consultar Por:"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 </RelativeLayout>

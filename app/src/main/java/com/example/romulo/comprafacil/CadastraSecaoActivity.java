@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.romulo.comprafacil.DAO.SecaoDAO;
-import com.example.romulo.comprafacil.MODEL.CadastraProdutoHelper;
 import com.example.romulo.comprafacil.MODEL.CasdastraSecaoHelper;
-import com.example.romulo.comprafacil.MODEL.Produto;
 import com.example.romulo.comprafacil.MODEL.Secao;
 
 public class CadastraSecaoActivity extends AppCompatActivity {

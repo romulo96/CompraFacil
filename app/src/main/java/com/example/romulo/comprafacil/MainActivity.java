@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
               //
               public boolean onQueryTextChange(String newText) {
                   final ProdutoDAO PD = new ProdutoDAO(MainActivity.this);
-                  nome=(RadioButton) findViewById(R.id.rbtn1);
-                  codigo=(RadioButton) findViewById(R.id.rbtn3);
-                  secao=(RadioButton) findViewById(R.id.rbtn2);
+                  nome=(RadioButton) findViewById(R.id.rbtnNome);
+                  codigo=(RadioButton) findViewById(R.id.rbtnCodigo);
+                  secao=(RadioButton) findViewById(R.id.rbtnSecao);
                   conteudopesq=pesquisa.getQuery().toString();
                   if(nome.isChecked()){
                       List<Produto> produtos=PD.buscaparodutotela(conteudopesq);
@@ -62,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
                       lista.setAdapter(adapter);
                   }
                   if(codigo.isChecked()){
-                      List<Produto> produtos=PD.buscaparodutotelaSecao(conteudopesq);
+                      List<Produto> produtos=PD.buscaparodutotelaCodigo(conteudopesq);
                       AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                       lista.setAdapter(adapter);
                   }else{
-                      List<Produto> produtos=PD.buscaparodutotelaCodigo(conteudopesq);
+                      List<Produto> produtos=PD.buscaparodutotelaSecao(conteudopesq);
                           AdapterProduto adapter = new AdapterProduto(produtos,MainActivity.this);
                           lista.setAdapter(adapter);
                   }

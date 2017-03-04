@@ -2,17 +2,12 @@ package com.example.romulo.comprafacil;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
 import com.example.romulo.comprafacil.MODEL.CadastraProdutoHelper;
