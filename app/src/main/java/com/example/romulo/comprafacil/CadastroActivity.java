@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -193,37 +194,57 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, final ContextMenu.ContextMenuInfo menuInfo) {
         //Botão para deletar
-        MenuItem menuContexto;
+        if(v.equals(list)) {
+            MenuItem menuContexto;
 
-        menuContexto= menu.add("Deletar");
-        menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-                Produto produto = (Produto) list.getItemAtPosition(info.position);
-                ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
-                PD.deletar(produto);
-                List<Produto> produtos=PD.busca(); PD.close();
-                AdapterProduto adapter = new AdapterProduto(produtos,CadastroActivity.this);
-                list.setAdapter(adapter);
-                PD.close();
-                return false;
-            }
-        });
-        menuContexto = menu.add("Exibir Foto");
-        menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-                Produto produto = (Produto) list.getItemAtPosition(info.position);
-                ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
-                Intent letgol=new Intent(CadastroActivity.this,ExibeFotoActivity.class);
-                letgol.putExtra("produto",produto);
-                startActivity(letgol);
-                return false;
-            }
-        });
-
+            menuContexto = menu.add("Deletar");
+            menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                    Produto produto = (Produto) list.getItemAtPosition(info.position);
+                    ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
+                    PD.deletar(produto);
+                    List<Produto> produtos = PD.busca();
+                    PD.close();
+                    AdapterProduto adapter = new AdapterProduto(produtos, CadastroActivity.this);
+                    list.setAdapter(adapter);
+                    PD.close();
+                    return false;
+                }
+            });
+            menuContexto = menu.add("Exibir Foto");
+            menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+                    AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+                    Produto produto = (Produto) list.getItemAtPosition(info.position);
+                    ProdutoDAO PD = new ProdutoDAO(CadastroActivity.this);
+                    Intent letgol = new Intent(CadastroActivity.this, ExibeFotoActivity.class);
+                    letgol.putExtra("produto", produto);
+                    startActivity(letgol);
+                    return false;
+                }
+            });
+        }
+        if(v.equals(listSecao)){
+            MenuItem menuContexto;
+            menuContexto=menu.add("Deletar");
+            menuContexto.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    AdapterView.AdapterContextMenuInfo info=(AdapterView.AdapterContextMenuInfo)menuInfo;
+                    Secao secao=(Secao) listSecao.getItemAtPosition(info.position);
+                    SecaoDAO PD = new SecaoDAO(CadastroActivity.this);
+                    PD.deletar(secao);
+                    List<Secao> secaos=PD.busca();
+                    PD.close();
+                    ArrayAdapter<Secao> adapter = new ArrayAdapter<Secao>(CadastroActivity.this, android.R.layout.simple_list_item_1, secaos);
+                    listSecao.setAdapter(adapter);
+                    return false;
+                }
+            });
+        }
     }
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
