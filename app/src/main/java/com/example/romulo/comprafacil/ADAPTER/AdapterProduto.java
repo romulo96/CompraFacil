@@ -1,4 +1,4 @@
-package com.example.romulo.comprafacil.MODEL;
+package com.example.romulo.comprafacil.ADAPTER;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.romulo.comprafacil.MODEL.Produto;
 import com.example.romulo.comprafacil.R;
 
 import java.util.List;

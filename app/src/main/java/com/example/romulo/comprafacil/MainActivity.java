@@ -1,23 +1,18 @@
 package com.example.romulo.comprafacil;
 
 import android.content.Intent;
-import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.SearchView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
-import com.example.romulo.comprafacil.MODEL.AdapterProduto;
+import com.example.romulo.comprafacil.ADAPTER.AdapterProduto;
 import com.example.romulo.comprafacil.MODEL.Produto;
 
 import java.util.List;

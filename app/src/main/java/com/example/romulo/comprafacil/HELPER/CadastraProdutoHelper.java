@@ -1,4 +1,4 @@
-package com.example.romulo.comprafacil.MODEL;
+package com.example.romulo.comprafacil.HELPER;
 
 import android.content.Intent;
 import android.view.View;
@@ -13,6 +13,8 @@ import com.example.romulo.comprafacil.CadastraSecaoActivity;
 import com.example.romulo.comprafacil.CadastroActivity;
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
 import com.example.romulo.comprafacil.DAO.SecaoDAO;
+import com.example.romulo.comprafacil.MODEL.Produto;
+import com.example.romulo.comprafacil.MODEL.Secao;
 import com.example.romulo.comprafacil.R;
 
 import java.util.List;

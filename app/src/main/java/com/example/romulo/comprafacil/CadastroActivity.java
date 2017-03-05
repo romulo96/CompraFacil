@@ -2,7 +2,6 @@ package com.example.romulo.comprafacil;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -20,15 +19,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
 import com.example.romulo.comprafacil.DAO.SecaoDAO;
-import com.example.romulo.comprafacil.MODEL.AdapterProduto;
+import com.example.romulo.comprafacil.ADAPTER.AdapterProduto;
 import com.example.romulo.comprafacil.MODEL.Produto;
 import com.example.romulo.comprafacil.MODEL.Secao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CadastroActivity extends AppCompatActivity {

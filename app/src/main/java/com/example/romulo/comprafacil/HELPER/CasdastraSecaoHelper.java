@@ -1,8 +1,9 @@
-package com.example.romulo.comprafacil.MODEL;
+package com.example.romulo.comprafacil.HELPER;
 
 import android.widget.EditText;
 
 import com.example.romulo.comprafacil.CadastraSecaoActivity;
+import com.example.romulo.comprafacil.MODEL.Secao;
 import com.example.romulo.comprafacil.R;
 
 /**

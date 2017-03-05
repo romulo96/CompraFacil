@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.romulo.comprafacil.DAO.ProdutoDAO;
-import com.example.romulo.comprafacil.MODEL.CadastraProdutoHelper;
+import com.example.romulo.comprafacil.HELPER.CadastraProdutoHelper;
 import com.example.romulo.comprafacil.MODEL.Produto;
 
 import java.io.File;
